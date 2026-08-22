@@ -450,8 +450,8 @@ async def view_image_by_path(path: str = Query(..., description="Absolute path t
     """Returns the image file from the local file system securely."""
     clean_path = Path(path).resolve()
     if not clean_path.exists() or not clean_path.is_file():
-        # Fallback: check if the file is in uploads or samples relatively
-        filename = Path(path).name
+        # Safely extract filename by normalizing backslashes on Linux hosts
+        filename = path.replace("\\", "/").split("/")[-1]
         possible_paths = [
             BASE_DIR / "uploads" / filename,
             BASE_DIR / "samples" / filename,
