@@ -9,6 +9,7 @@ uploads/
 *.jpeg
 !samples/
 
-# Allow specific demo images in uploads
+# Allow specific files that are needed
+!requirements.txt
 !uploads/053e182e_sample12.jpg
 !uploads/fce0c8b8_sample4.jpg
