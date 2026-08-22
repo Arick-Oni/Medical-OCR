@@ -1,9 +1,21 @@
 import os
 import cv2
 import numpy as np
-import torch
-import torch.nn as nn
-from torchvision import transforms
+try:
+    import torch
+    import torch.nn as nn
+    from torchvision import transforms
+    HAS_TORCH = True
+except ImportError:
+    HAS_TORCH = False
+    class DummyModule:
+        def __init__(self, *args, **kwargs): pass
+    class Dummy:
+        pass
+    nn = Dummy()
+    nn.Module = DummyModule
+    transforms = Dummy()
+    transforms.Compose = DummyModule
 from PIL import Image
 
 # 4 classes used in mini_cnn_model.pth training
@@ -61,6 +73,13 @@ class MiniCNN(nn.Module):
 
 class CNNPatchClassifier:
     def __init__(self, model_path: str = None):
+        if not HAS_TORCH:
+            self.device = "cpu"
+            self.model = None
+            self.transform = None
+            print("[Info] Running CNNPatchClassifier in CPU-only rule-based fallback mode (PyTorch not installed).")
+            return
+
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model = None
 

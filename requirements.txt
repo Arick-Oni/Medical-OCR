@@ -10,7 +10,6 @@ pillow==10.4.0
 langgraph==0.2.14
 numpy==1.26.4
 pytesseract==0.3.10
-easyocr==1.7.1
 requests==2.32.3
 pypdfium2==4.30.0
 

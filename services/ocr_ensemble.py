@@ -11,7 +11,11 @@ import numpy as np
 from PIL import Image
 import pytesseract
 from pytesseract import Output
-import torch
+try:
+    import torch
+    HAS_TORCH = True
+except ImportError:
+    HAS_TORCH = False
 
 from .ngrok_client import NgrokJobClient, DEFAULT_NGROK_URL
 
@@ -72,23 +76,25 @@ class MultiEngineOCREnsemble:
             return
         try:
             user_net_dir = Path.home() / ".EasyOCR" / "user_network"
+            use_gpu = torch.cuda.is_available() if HAS_TORCH else False
             if (user_net_dir / "easyocr_stc_finetune.yaml").exists():
                 self.easyocr_reader = easyocr.Reader(
                     ['custom'],
-                    gpu=torch.cuda.is_available(),
+                    gpu=use_gpu,
                     recog_network='easyocr_stc_finetune',
                     download_enabled=True
                 )
             else:
                 self.easyocr_reader = easyocr.Reader(
                     ['en'],
-                    gpu=torch.cuda.is_available(),
+                    gpu=use_gpu,
                     download_enabled=True
                 )
         except Exception as e:
             print(f"Warning: EasyOCR custom network init: {e}", flush=True)
             try:
-                self.easyocr_reader = easyocr.Reader(['en'], gpu=torch.cuda.is_available(), download_enabled=True)
+                use_gpu = torch.cuda.is_available() if HAS_TORCH else False
+                self.easyocr_reader = easyocr.Reader(['en'], gpu=use_gpu, download_enabled=True)
             except Exception:
                 self.easyocr_reader = None
 
