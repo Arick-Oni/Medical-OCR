@@ -662,7 +662,7 @@ body {
     flex: 1;
     padding: 16px;
     overflow-y: auto;
-    max-height: calc(100vh - 240px);
+    height: calc(100vh - 190px);
 }
 
 .tab-content.active {
@@ -825,7 +825,8 @@ body {
 }
 
 #tabChat {
-    height: calc(100% - 10px);
+    height: 100%;
+    overflow: hidden;
 }
 
 /* Chat Assistant Drawer */
@@ -848,7 +849,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    min-height: 350px;
+    min-height: 150px;
 }
 
 .chat-msg {
