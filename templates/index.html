@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 MediDigitizer AI 2.0 (LangGraph + Grounded OCR)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="/static/css/style.css?v=2.3">
+</head>
+<body class="light-theme">
+
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+        <div class="header-left">
+            <div class="logo-badge">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <div>
+                <h1 class="logo-title">MediDigitizer <span class="accent-text">AI 2.0</span> <span class="langgraph-badge">LangGraph</span></h1>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="pipeline-stepper" id="pipelineStepper">
+                <div class="step-node active" id="stepUpload"><span class="node-num">1</span> Ingest</div>
+                <div class="step-divider"></div>
+                <div class="step-node" id="stepCNN"><span class="node-num">2</span> MiniCNN</div>
+                <div class="step-divider"></div>
+                <div class="step-node" id="stepOCR"><span class="node-num">3</span> Pure OCR</div>
+                <div class="step-divider"></div>
+                <div class="step-node" id="stepNER"><span class="node-num">4</span> Pydantic NER</div>
+                <div class="step-divider"></div>
+                <div class="step-node" id="stepGround"><span class="node-num">5</span> Grounding</div>
+                <div class="step-divider"></div>
+                <div class="step-node" id="stepHITL"><span class="node-num">6</span> Doctor Review</div>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="status-pill" id="ngrokStatusPill" title="Click to test Colab Ngrok Connection">
+                <span class="status-dot pulsing" id="statusDot"></span>
+                <span class="status-label" id="statusLabel">Checking Ngrok...</span>
+            </div>
+            <button class="icon-btn" id="btnOpenHistory" title="Digitization History">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </button>
+            <button class="icon-btn" id="btnOpenSettings" title="Pipeline & Ngrok Settings">
+                <i class="fa-solid fa-sliders"></i>
+            </button>
+            <button class="icon-btn" id="btnThemeToggle" title="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-main">
+
+        <!-- Top Upload & Control Strip -->
+        <section class="upload-control-strip">
+            <!-- Dropzone -->
+            <div class="dropzone-compact" id="dropzone">
+                <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+                <div class="drop-text">
+                    <strong>Drop prescription scan here</strong>
+                    <span>or <em>browse files</em> (.png, .jpg, .webp)</span>
+                </div>
+                <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.webp" hidden>
+            </div>
+
+            <!-- Quick Samples -->
+            <div class="quick-samples-box">
+                <span class="samples-label"><i class="fa-solid fa-vial"></i> Quick Test:</span>
+                <div class="samples-list" id="samplesList">
+                    <span class="loading-spinner-sm"></span> Loading sample prescriptions...
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="action-controls">
+                <button class="btn-primary" id="btnProcess" disabled>
+                    <i class="fa-solid fa-play"></i> Run LangGraph Pipeline
+                </button>
+            </div>
+        </section>
+
+        <!-- Main Workspace Dual-Pane Layout -->
+        <section class="workspace-grid">
+
+            <!-- LEFT PANE: Interactive Visual Canvas -->
+            <div class="pane-card canvas-pane">
+                <div class="pane-header">
+                    <div class="pane-title">
+                        <i class="fa-solid fa-image"></i>
+                        <span>Visual Document Inspector</span>
+                    </div>
+
+                    <!-- Canvas Toolbar Controls -->
+                    <div class="canvas-toolbar">
+                        <button class="toolbar-btn" id="btnZoomIn" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="toolbar-btn" id="btnZoomOut" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="toolbar-btn" id="btnZoomFit" title="Fit to Screen"><i class="fa-solid fa-compress"></i></button>
+                    </div>
+                </div>
+
+                <!-- Layer Filter Bar -->
+                <div class="layer-filter-bar">
+                    <div class="layer-chips-group">
+                        <span class="filter-label"><i class="fa-solid fa-layer-group"></i> Overlays:</span>
+                        <label class="layer-chip red active">
+                            <input type="checkbox" id="layerOCR" checked>
+                            <span class="chip-dot"></span> <i class="fa-solid fa-heading"></i> OCR Lines
+                        </label>
+                        <label class="layer-chip purple active">
+                            <input type="checkbox" id="layerNER" checked>
+                            <span class="chip-dot"></span> <i class="fa-solid fa-strikethrough"></i> NER Entities
+                        </label>
+                        <label class="layer-chip cyan">
+                            <input type="checkbox" id="layerWordBoxes">
+                            <span class="chip-dot"></span> <i class="fa-solid fa-vector-square"></i> Grounded Words
+                        </label>
+
+                        <span class="chip-divider"></span>
+
+                        <label class="layer-chip green active">
+                            <input type="checkbox" id="layerHandwritten" checked>
+                            <span class="chip-dot"></span> <i class="fa-solid fa-signature"></i> Handwritten
+                        </label>
+                        <label class="layer-chip blue active">
+                            <input type="checkbox" id="layerPrinted" checked>
+                            <span class="chip-dot"></span> <i class="fa-solid fa-print"></i> Printed
+                        </label>
+                        <label class="layer-chip pink active">
+                            <input type="checkbox" id="layerMixed" checked>
+                            <span class="chip-dot"></span> <i class="fa-solid fa-layer-group"></i> Mixed
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Canvas Viewport -->
+                <div class="canvas-viewport" id="canvasViewport">
+                    <div class="canvas-placeholder" id="canvasPlaceholder">
+                        <i class="fa-solid fa-file-medical pulse-slow"></i>
+                        <p>Upload a prescription or click a quick sample above to inspect</p>
+                    </div>
+                    <canvas id="documentCanvas"></canvas>
+                    <div class="canvas-tooltip" id="canvasTooltip"></div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANE: Results & Analysis Tabs -->
+            <div class="pane-card results-pane">
+                <!-- Tabs Header -->
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="tabNER">
+                        <i class="fa-solid fa-brain"></i> Structured NER & Review
+                    </button>
+                    <button class="tab-btn" data-tab="tabTranscription">
+                        <i class="fa-solid fa-file-lines"></i> OCR Transcription
+                    </button>
+                    <button class="tab-btn" data-tab="tabChat">
+                        <i class="fa-solid fa-comments"></i> Clinical AI Chat
+                    </button>
+                    <button class="tab-btn" data-tab="tabJSON">
+                        <i class="fa-solid fa-code"></i> Step-by-Step JSON
+                    </button>
+                </div>
+
+                <!-- Tab Content 1: Structured NER & HITL Review -->
+                <div class="tab-content active" id="tabNER">
+                    <!-- HITL Approval Banner -->
+                    <div class="hitl-alert-box" id="hitlBanner" style="display: none;">
+                        <div class="hitl-alert-text">
+                            <i class="fa-solid fa-triangle-exclamation"></i> <strong>Doctor Verification Required:</strong> Review extracted entities, edit values if needed, and finalize.
+                        </div>
+                        <button class="btn-primary btn-sm" id="btnApproveState">
+                            <i class="fa-solid fa-check"></i> Approve & Finalize
+                        </button>
+                    </div>
+
+                    <div class="empty-state" id="emptyNERState">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <p>Run the pipeline to extract structured clinical entities.</p>
+                    </div>
+
+                    <div id="nerDetailsContainer" style="display: none;">
+                        <!-- Header & Prescriber -->
+                        <div class="ner-card" style="margin-bottom: 12px;">
+                            <div class="ner-card-header"><i class="fa-solid fa-user-doctor"></i> Prescriber & Facility</div>
+                            <div class="ner-grid-2">
+                                <div class="ner-item">
+                                    <label class="ner-label">Doctor Name</label>
+                                    <input type="text" id="fieldDoctor" class="ner-input">
+                                </div>
+                                <div class="ner-item">
+                                    <label class="ner-label">License / PTR No.</label>
+                                    <input type="text" id="fieldLicense" class="ner-input">
+                                </div>
+                                <div class="ner-item">
+                                    <label class="ner-label">Facility Name</label>
+                                    <input type="text" id="fieldFacility" class="ner-input">
+                                </div>
+                                <div class="ner-item">
+                                    <label class="ner-label">Date</label>
+                                    <input type="text" id="fieldDate" class="ner-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Patient Details -->
+                        <div class="ner-card" style="margin-bottom: 12px;">
+                            <div class="ner-card-header"><i class="fa-solid fa-user"></i> Patient Information</div>
+                            <div class="ner-grid-2">
+                                <div class="ner-item">
+                                    <label class="ner-label">Patient Name</label>
+                                    <input type="text" id="fieldPatient" class="ner-input">
+                                </div>
+                                <div class="ner-item">
+                                    <label class="ner-label">Age / Gender</label>
+                                    <input type="text" id="fieldAgeGender" class="ner-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Medications -->
+                        <div class="ner-card">
+                            <div class="ner-card-header"><i class="fa-solid fa-pills"></i> Prescribed Medications</div>
+                            <div id="medicationsTableContainer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content 2: High-Accuracy Transcription -->
+                <div class="tab-content" id="tabTranscription">
+                    <div class="ocr-transcription-card">
+                        <div class="ocr-transcription-header">
+                            <div class="transcription-title"><i class="fa-solid fa-align-left"></i> Pure OCR Transcription (Qwen2.5-VL)</div>
+                            <button class="btn-sm" id="btnCopyTranscription"><i class="fa-solid fa-copy"></i> Copy</button>
+                        </div>
+                        <pre class="transcription-code-block" id="transcriptionCodeBlock">// Clean OCR transcription will appear here...</pre>
+                    </div>
+                </div>
+
+                <!-- Tab Content 3: Clinical AI Assistant Chat -->
+                <div class="tab-content" id="tabChat">
+                    <div class="chat-drawer" style="margin-top: 0; border-top: none;">
+                        <h4 style="font-size: 0.9rem; margin-bottom: 8px;"><i class="fa-solid fa-robot"></i> Clinical Pharmacological Assistant</h4>
+                        
+                        <!-- Chat Model Selector -->
+                        <div class="chat-model-selector" style="display: flex; gap: 8px; margin-bottom: 10px; align-items: center;">
+                            <label for="selectChatModel" style="font-size: 11px; font-weight: 600; color: var(--text-secondary); white-space: nowrap;"><i class="fa-solid fa-brain"></i> Model:</label>
+                            <select id="selectChatModel" class="form-select-sm" style="flex: 1; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 4px; padding: 4px; font-size: 11px; outline: none; cursor: pointer;">
+                                <option value="qwen2.5vl:7b">Qwen 2.5 VL (7B)</option>
+                                <option value="frob/unlimited-ocr:q8_0">Unlimited OCR Q8</option>
+                                <option value="Qwen2.5-VL-3B-Instruct-UD-Q4_K_XL:latest">Qwen 3B Custom</option>
+                                <option value="custom">-- Custom Model Name --</option>
+                            </select>
+                            <input type="text" id="inputChatModelCustom" class="form-input" style="flex: 1; display: none; padding: 4px 8px; font-size: 11px; height: 26px; box-sizing: border-box;" placeholder="Enter model name...">
+                        </div>
+
+                        <div class="chat-messages-container" id="chatContainer">
+                            <div class="chat-msg assistant">Hello! I am your clinical assistant. Ask about drug interactions, dosage warnings, or patient instructions based on this prescription.</div>
+                        </div>
+                        <div class="chat-input-row">
+                            <input type="text" class="chat-input" id="chatInput" placeholder="Ask a clinical question...">
+                            <button class="btn-primary btn-sm" id="btnSendChat"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                        <div class="prompt-chips">
+                            <button class="chip-btn" data-q="Check for any drug-drug interactions in these medications.">⚠️ Drug Interactions</button>
+                            <button class="chip-btn" data-q="Summarize simple medication instructions for the patient.">📋 Patient Instructions</button>
+                            <button class="chip-btn" data-q="Verify if the dosage strengths are standard.">💊 Dosage Check</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content 4: Step-by-Step JSON -->
+                <div class="tab-content" id="tabJSON" style="height: calc(100% - 46px);">
+                    <div class="json-header-actions" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color);">
+                        <div class="json-filter-group" style="display: flex; align-items: center; gap: 8px;">
+                            <label for="selectJsonSection" style="font-size: 11px; font-weight: 600; color: var(--text-secondary);"><i class="fa-solid fa-filter"></i> View:</label>
+                            <select id="selectJsonSection" class="form-select-sm" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 4px; padding: 3px 6px; font-size: 11px; outline: none; cursor: pointer;">
+                                <option value="full">Full LangGraph State JSON</option>
+                                <option value="cnn">MiniCNN Patches</option>
+                                <option value="tesseract">Tesseract OCR Raw</option>
+                                <option value="easyocr">EasyOCR Raw</option>
+                                <option value="vlm_ocr">Qwen VLM Transcription</option>
+                                <option value="ner_data">Extracted NER Data</option>
+                                <option value="word_detections">Grounded Word Boxes</option>
+                                <option value="fused_ner_boxes">Fused NER Entity Underlines</option>
+                            </select>
+                        </div>
+                        <div class="json-button-group">
+                            <button class="btn-sm" id="btnCopyJSON" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 4px 10px; border-radius: var(--radius-sm); cursor: pointer; font-size: 11px; display: flex; align-items: center; gap: 4px;"><i class="fa-solid fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+                    <pre class="json-code-view" id="jsonCodeView" style="margin: 0; padding: 14px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.5; color: #E1E4E8; background: #0D1117; overflow: auto; height: calc(100% - 38px); box-sizing: border-box; border-radius: 0 0 var(--radius-lg) var(--radius-lg);"><code style="white-space: pre-wrap; word-break: break-all;">// Complete pipeline JSON output will appear here after execution...</code></pre>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Settings Modal -->
+    <div class="modal-backdrop" id="settingsModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-sliders"></i> Colab Ngrok & Pipeline Settings</h3>
+                <button class="close-btn" id="btnCloseSettings">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="inputNgrokUrl">Colab Ngrok Tunnel URL:</label>
+                    <div class="input-with-action">
+                        <input type="text" id="inputNgrokUrl" class="form-input" value="{{ settings.ngrok_url }}">
+                        <button class="btn-sm btn-primary" id="btnTestNgrok"><i class="fa-solid fa-plug"></i> Test</button>
+                    </div>
+                    <small class="form-hint" id="ngrokTestResult">Enter the active Ngrok URL from your Colab notebook.</small>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="selectOCRQwen">VLM Model:</label>
+                        <input type="text" id="selectOCRQwen" class="form-input" value="{{ settings.ocr_qwen_model }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectNERModel">NER Model:</label>
+                        <input type="text" id="selectNERModel" class="form-input" value="{{ settings.ner_model }}">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="btnCancelSettings">Cancel</button>
+                <button class="btn-primary" id="btnSaveSettings"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div class="modal-backdrop" id="historyModal">
+        <div class="modal-card" style="width: 750px; max-width: 90vw;">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Digitization Run History</h3>
+                <button class="close-btn" id="btnCloseHistory">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 60vh; overflow-y: auto; padding: 14px 20px;">
+                <div id="historyLoading" style="text-align: center; padding: 30px; display: none;">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--accent-blue);"></i>
+                    <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">Loading history logs...</p>
+                </div>
+                <div id="historyEmpty" style="text-align: center; padding: 30px; display: none;">
+                    <i class="fa-solid fa-folder-open fa-2x" style="color: var(--text-secondary);"></i>
+                    <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">No previous digitization runs found.</p>
+                </div>
+                <table class="meds-table" id="historyTable" style="width: 100%; border-collapse: collapse; display: none; font-size: 12px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 12%; padding: 8px;">Thread</th>
+                            <th style="width: 25%; padding: 8px;">Patient Name</th>
+                            <th style="width: 25%; padding: 8px;">Doctor Name</th>
+                            <th style="width: 18%; padding: 8px;">Date/Time</th>
+                            <th style="width: 10%; padding: 8px;">Status</th>
+                            <th style="width: 10%; padding: 8px; text-align: center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <!-- History logs populate dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px;">
+                <span id="historyDbBackend" style="font-size: 11px; font-weight: 600; color: var(--text-secondary); background: var(--bg-tertiary); padding: 4px 8px; border-radius: 4px;">Backend: sqlite</span>
+                <button class="btn-secondary" id="btnCloseHistoryFooter">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/js/canvas_overlay.js?v=2.3"></script>
+    <script src="/static/js/app.js?v=2.3"></script>
+</body>
+</html>
