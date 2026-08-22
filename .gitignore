@@ -1,7 +1,6 @@
 __pycache__/
 *.pyc
 .env
-history.db
 uploads/
 *.pdf
 *.txt
@@ -9,3 +8,7 @@ uploads/
 *.jpg
 *.jpeg
 !samples/
+
+# Allow specific demo images in uploads
+!uploads/053e182e_sample12.jpg
+!uploads/fce0c8b8_sample4.jpg

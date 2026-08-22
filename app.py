@@ -450,7 +450,21 @@ async def view_image_by_path(path: str = Query(..., description="Absolute path t
     """Returns the image file from the local file system securely."""
     clean_path = Path(path).resolve()
     if not clean_path.exists() or not clean_path.is_file():
-        raise HTTPException(status_code=404, detail="Image path not found")
+        # Fallback: check if the file is in uploads or samples relatively
+        filename = Path(path).name
+        possible_paths = [
+            BASE_DIR / "uploads" / filename,
+            BASE_DIR / "samples" / filename,
+            BASE_DIR / filename
+        ]
+        found = False
+        for p in possible_paths:
+            if p.exists() and p.is_file():
+                clean_path = p
+                found = True
+                break
+        if not found:
+            raise HTTPException(status_code=404, detail="Image path not found")
     
     # Check that it's an image
     if clean_path.suffix.lower() not in [".png", ".jpg", ".jpeg", ".webp"]:
