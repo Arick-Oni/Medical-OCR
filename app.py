@@ -471,3 +471,9 @@ async def view_image_by_path(path: str = Query(..., description="Absolute path t
         raise HTTPException(status_code=400, detail="File is not a supported image format")
         
     return FileResponse(str(clean_path))
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+

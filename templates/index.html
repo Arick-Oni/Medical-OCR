@@ -43,6 +43,15 @@
         </div>
 
         <div class="header-right">
+            <div class="mode-badge demo" id="modeBadge" title="Render Cloud Safe Mode: Viewing pre-computed run fe6126fa. Live pipeline & AI chat locked to preserve cloud resources.">
+                <span class="mode-dot"></span>
+                <i class="fa-solid fa-shield-halved"></i>
+                <span id="modeBadgeText">Safe Demo Mode</span>
+            </div>
+            <button class="btn-unlock-toggle" id="btnToggleLock" title="Click to unlock live pipeline execution and AI Chat">
+                <i class="fa-solid fa-lock" id="btnToggleLockIcon"></i>
+                <span id="btnToggleLockText">Unlock Live Mode</span>
+            </button>
             <div class="status-pill" id="ngrokStatusPill" title="Click to test Colab Ngrok Connection">
                 <span class="status-dot pulsing" id="statusDot"></span>
                 <span class="status-label" id="statusLabel">Checking Ngrok...</span>
@@ -84,8 +93,8 @@
 
             <!-- Action Controls -->
             <div class="action-controls">
-                <button class="btn-primary" id="btnProcess" disabled>
-                    <i class="fa-solid fa-play"></i> Run LangGraph Pipeline
+                <button class="btn-primary btn-locked" id="btnProcess" disabled title="Live pipeline execution is locked in Safe Demo Mode to prevent cloud server freezing. Click 'Unlock Live Mode' to enable.">
+                    <i class="fa-solid fa-lock" id="btnProcessIcon"></i> <span id="btnProcessText">Pipeline Locked (Demo Mode)</span>
                 </button>
             </div>
         </section>
@@ -264,14 +273,24 @@
                             <input type="text" id="inputChatModelCustom" class="form-input" style="flex: 1; display: none; padding: 4px 8px; font-size: 11px; height: 26px; box-sizing: border-box;" placeholder="Enter model name...">
                         </div>
 
+                        <!-- Chat Lock Banner -->
+                        <div class="chat-lock-banner" id="chatLockBanner">
+                            <div class="chat-lock-text">
+                                <i class="fa-solid fa-shield-halved"></i> <span>Live AI Chat is locked in Safe Demo Mode to prevent cloud server freezing.</span>
+                            </div>
+                            <button class="btn-unlock-sm" id="btnUnlockFromChat" title="Click to unlock live chat features">
+                                <i class="fa-solid fa-lock-open"></i> Unlock
+                            </button>
+                        </div>
+
                         <div class="chat-messages-container" id="chatContainer">
                             <div class="chat-msg assistant">Hello! I am your clinical assistant. Ask about drug interactions, dosage warnings, or patient instructions based on this prescription.</div>
                         </div>
                         <div class="chat-input-row">
-                            <input type="text" class="chat-input" id="chatInput" placeholder="Ask a clinical question...">
-                            <button class="btn-primary btn-sm" id="btnSendChat"><i class="fa-solid fa-paper-plane"></i></button>
+                            <input type="text" class="chat-input" id="chatInput" placeholder="🔒 Live AI Chat locked in Demo Mode. Unlock to query..." disabled>
+                            <button class="btn-primary btn-sm" id="btnSendChat" disabled><i class="fa-solid fa-paper-plane"></i></button>
                         </div>
-                        <div class="prompt-chips">
+                        <div class="prompt-chips" id="promptChips">
                             <button class="chip-btn" data-q="Check for any drug-drug interactions in these medications.">⚠️ Drug Interactions</button>
                             <button class="chip-btn" data-q="Summarize simple medication instructions for the patient.">📋 Patient Instructions</button>
                             <button class="chip-btn" data-q="Verify if the dosage strengths are standard.">💊 Dosage Check</button>
@@ -339,6 +358,36 @@
             <div class="modal-footer">
                 <button class="btn-secondary" id="btnCancelSettings">Cancel</button>
                 <button class="btn-primary" id="btnSaveSettings"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unlock Confirmation Modal -->
+    <div class="modal-backdrop" id="unlockModal">
+        <div class="modal-card" style="width: 500px; max-width: 92vw;">
+            <div class="modal-header">
+                <h3 style="display: flex; align-items: center; gap: 8px; color: var(--accent-orange);">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Unlock Live Processing & AI Chat
+                </h3>
+                <button class="close-btn" id="btnCloseUnlockModal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 18px 22px; font-size: 13px; line-height: 1.6;">
+                <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px;">
+                    <p style="margin-bottom: 6px; font-weight: 700; color: var(--text-primary);"><i class="fa-solid fa-server"></i> Cloud Hosting Resource Safeguard (Render Free Tier):</p>
+                    <p style="color: var(--text-secondary); font-size: 12px; margin: 0;">Running full OCR ensembles, MiniCNN patch slicing, and Vision-Language models directly on cloud instances requires high CPU/GPU memory. Live inference without an active Ngrok tunnel or sufficient server RAM may freeze the instance.</p>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 12.5px; margin-bottom: 8px;">
+                    By default, <strong>MediDigitizer AI</strong> loads pre-computed historical runs (such as the approved run <code>fe6126fa</code>) for instant, resource-friendly exploration.
+                </p>
+                <p style="font-size: 12px; color: var(--text-muted); margin: 0;">
+                    Click <strong>"Unlock Live Features"</strong> if you have connected an active Colab Ngrok tunnel in Settings or have dedicated compute resources.
+                </p>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px;">
+                <button class="btn-secondary" id="btnCancelUnlock">Keep Safe Demo Mode</button>
+                <button class="btn-primary" id="btnConfirmUnlock" style="background: linear-gradient(135deg, #F59E0B, #D97706); color: #000; font-weight: 700; border: none; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);">
+                    <i class="fa-solid fa-lock-open"></i> Unlock Live Features
+                </button>
             </div>
         </div>
     </div>

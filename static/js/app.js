@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedSampleName = null;
     let currentImageDataUrl = null;
     let fullState = null;
+    let isLiveUnlocked = false; // Render Cloud Safe Mode (Locked by default)
 
     // JSON Tab UI Elements
     const selectJsonSection = document.getElementById("selectJsonSection");
@@ -22,6 +23,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const historyTable = document.getElementById("historyTable");
     const historyTableBody = document.getElementById("historyTableBody");
     const historyDbBackend = document.getElementById("historyDbBackend");
+
+    // Lock & Demo Mode UI Elements
+    const modeBadge = document.getElementById("modeBadge");
+    const modeBadgeText = document.getElementById("modeBadgeText");
+    const btnToggleLock = document.getElementById("btnToggleLock");
+    const btnToggleLockIcon = document.getElementById("btnToggleLockIcon");
+    const btnToggleLockText = document.getElementById("btnToggleLockText");
+    const btnProcessIcon = document.getElementById("btnProcessIcon");
+    const btnProcessText = document.getElementById("btnProcessText");
+    const chatLockBanner = document.getElementById("chatLockBanner");
+    const btnUnlockFromChat = document.getElementById("btnUnlockFromChat");
+    const unlockModal = document.getElementById("unlockModal");
+    const btnCloseUnlockModal = document.getElementById("btnCloseUnlockModal");
+    const btnCancelUnlock = document.getElementById("btnCancelUnlock");
+    const btnConfirmUnlock = document.getElementById("btnConfirmUnlock");
 
     // Initialize Canvas Overlay Controller
     const canvas = new PrescriptionCanvas('documentCanvas', 'canvasTooltip', 'canvasViewport');
@@ -171,6 +187,112 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // ----------------- DEMO / LIVE LOCK STATE MANAGER -----------------
+    function setLiveLockState(unlocked) {
+        isLiveUnlocked = unlocked;
+        if (unlocked) {
+            if (modeBadge) {
+                modeBadge.className = "mode-badge live";
+                if (modeBadgeText) modeBadgeText.textContent = "Live Mode Active";
+                modeBadge.title = "Live pipeline inference and AI chat are unlocked.";
+            }
+            if (btnToggleLock) {
+                btnToggleLock.className = "btn-unlock-toggle live-active";
+                btnToggleLock.innerHTML = '<i class="fa-solid fa-lock-open" id="btnToggleLockIcon"></i> <span id="btnToggleLockText">Lock Safe Mode</span>';
+                btnToggleLock.title = "Click to return to safe demo mode";
+            }
+            if (btnProcess) {
+                btnProcess.classList.remove("btn-locked");
+                if (selectedFile || selectedSampleName) {
+                    btnProcess.disabled = false;
+                }
+                btnProcess.innerHTML = '<i class="fa-solid fa-play" id="btnProcessIcon"></i> <span id="btnProcessText">Run LangGraph Pipeline</span>';
+                btnProcess.title = "Execute LangGraph state machine on selected prescription scan";
+            }
+            if (chatLockBanner) {
+                chatLockBanner.style.display = "none";
+            }
+            if (chatInput) {
+                chatInput.disabled = false;
+                chatInput.placeholder = "Ask a clinical question...";
+            }
+            if (btnSendChat) {
+                btnSendChat.disabled = false;
+            }
+            const dropSpan = dropzone.querySelector('.drop-text span');
+            if (dropSpan && (selectedFile || selectedSampleName)) {
+                dropSpan.textContent = "Ready to process — Click Run LangGraph Pipeline";
+            }
+        } else {
+            if (modeBadge) {
+                modeBadge.className = "mode-badge demo";
+                if (modeBadgeText) modeBadgeText.textContent = "Safe Demo Mode";
+                modeBadge.title = "Render Cloud Safe Mode: Viewing pre-computed run fe6126fa. Live pipeline & AI chat locked to preserve cloud resources.";
+            }
+            if (btnToggleLock) {
+                btnToggleLock.className = "btn-unlock-toggle";
+                btnToggleLock.innerHTML = '<i class="fa-solid fa-lock" id="btnToggleLockIcon"></i> <span id="btnToggleLockText">Unlock Live Mode</span>';
+                btnToggleLock.title = "Click to unlock live pipeline execution and AI Chat";
+            }
+            if (btnProcess) {
+                btnProcess.classList.add("btn-locked");
+                btnProcess.disabled = true;
+                btnProcess.innerHTML = '<i class="fa-solid fa-lock" id="btnProcessIcon"></i> <span id="btnProcessText">Pipeline Locked (Demo Mode)</span>';
+                btnProcess.title = "Live pipeline execution is locked in Safe Demo Mode to prevent cloud server freezing. Click 'Unlock Live Mode' to enable.";
+            }
+            if (chatLockBanner) {
+                chatLockBanner.style.display = "flex";
+            }
+            if (chatInput) {
+                chatInput.disabled = true;
+                chatInput.placeholder = "🔒 Live AI Chat locked in Demo Mode. Unlock to query...";
+            }
+            if (btnSendChat) {
+                btnSendChat.disabled = true;
+            }
+            const dropSpan = dropzone.querySelector('.drop-text span');
+            if (dropSpan && (selectedFile || selectedSampleName)) {
+                dropSpan.textContent = "Sample loaded (Safe Demo Mode)";
+            }
+        }
+    }
+
+    // Unlock Modal Bindings
+    if (btnToggleLock) {
+        btnToggleLock.addEventListener("click", () => {
+            if (isLiveUnlocked) {
+                setLiveLockState(false);
+            } else {
+                if (unlockModal) unlockModal.style.display = "flex";
+            }
+        });
+    }
+
+    if (btnUnlockFromChat) {
+        btnUnlockFromChat.addEventListener("click", () => {
+            if (unlockModal) unlockModal.style.display = "flex";
+        });
+    }
+
+    if (btnCloseUnlockModal) {
+        btnCloseUnlockModal.addEventListener("click", () => {
+            if (unlockModal) unlockModal.style.display = "none";
+        });
+    }
+
+    if (btnCancelUnlock) {
+        btnCancelUnlock.addEventListener("click", () => {
+            if (unlockModal) unlockModal.style.display = "none";
+        });
+    }
+
+    if (btnConfirmUnlock) {
+        btnConfirmUnlock.addEventListener("click", () => {
+            setLiveLockState(true);
+            if (unlockModal) unlockModal.style.display = "none";
+        });
+    }
+
     // ----------------- LOAD SAMPLES -----------------
     loadSamples();
 
@@ -185,13 +307,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 samples.forEach((s, idx) => {
                     const chip = document.createElement("div");
-                    chip.className = "sample-chip";
+                    chip.className = "sample-chip" + (idx === 0 ? " active" : "");
                     chip.textContent = s.name;
                     chip.addEventListener("click", () => selectSample(s.name, chip));
                     samplesList.appendChild(chip);
-
-                    // Auto-select first sample for convenience
-                    if (idx === 0) selectSample(s.name, chip);
                 });
             })
             .catch(() => {
@@ -204,12 +323,25 @@ document.addEventListener("DOMContentLoaded", () => {
         if (chipElem) chipElem.classList.add("active");
         selectedSampleName = sampleName;
         selectedFile = null;
-        btnProcess.disabled = false;
 
         dropzone.querySelector('.drop-text strong').textContent = sampleName;
-        dropzone.querySelector('.drop-text span').textContent = "Sample selected — Click Run LangGraph Pipeline";
+        dropzone.querySelector('.drop-text span').textContent = isLiveUnlocked
+            ? "Sample selected — Click Run LangGraph Pipeline"
+            : "Sample loaded (Safe Demo Mode)";
 
-        // Fetch instant Base64 preview via /api/preview
+        if (isLiveUnlocked) {
+            btnProcess.disabled = false;
+        } else {
+            btnProcess.disabled = true;
+        }
+
+        // If sample1.jpg is selected, load the full pre-computed historical run fe6126fa with all markings
+        if (sampleName === "sample1.jpg") {
+            loadPastRun("fe6126fa", false);
+            return;
+        }
+
+        // Fetch instant Base64 preview via /api/preview for other samples
         const formData = new FormData();
         formData.append("sample_name", sampleName);
 
@@ -224,7 +356,6 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(err => {
                 console.error("Preview load error:", err);
-                // Direct fallback
                 currentImageDataUrl = `/api/samples/${sampleName}`;
                 if (canvasPlaceholder) canvasPlaceholder.style.display = "none";
                 canvas.loadImage(currentImageDataUrl, [], [], [], []);
@@ -232,7 +363,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ----------------- DROPZONE & FILE INPUT -----------------
-    dropzone.addEventListener("click", () => fileInput.click());
+    dropzone.addEventListener("click", () => {
+        if (!isLiveUnlocked) {
+            if (unlockModal) unlockModal.style.display = "flex";
+            return;
+        }
+        fileInput.click();
+    });
 
     fileInput.addEventListener("change", (e) => {
         if (e.target.files.length > 0) {
@@ -250,6 +387,10 @@ document.addEventListener("DOMContentLoaded", () => {
     dropzone.addEventListener("drop", (e) => {
         e.preventDefault();
         dropzone.classList.remove("dragover");
+        if (!isLiveUnlocked) {
+            if (unlockModal) unlockModal.style.display = "flex";
+            return;
+        }
         if (e.dataTransfer.files.length > 0) {
             handleFileUpload(e.dataTransfer.files[0]);
         }
@@ -259,7 +400,10 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedFile = file;
         selectedSampleName = null;
         document.querySelectorAll(".sample-chip").forEach(c => c.classList.remove("active"));
-        btnProcess.disabled = false;
+        
+        if (isLiveUnlocked) {
+            btnProcess.disabled = false;
+        }
 
         dropzone.querySelector('.drop-text strong').textContent = file.name;
         dropzone.querySelector('.drop-text span').textContent = `${(file.size / 1024).toFixed(1)} KB — Ready to process`;
@@ -291,6 +435,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ----------------- RUN LANGGRAPH PIPELINE -----------------
     btnProcess.addEventListener("click", async () => {
+        if (!isLiveUnlocked) {
+            if (unlockModal) unlockModal.style.display = "flex";
+            return;
+        }
+
         btnProcess.disabled = true;
         btnProcess.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Executing LangGraph Machine...`;
         updateStepper("stepCNN");
@@ -322,8 +471,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (err) {
             alert("Pipeline execution error: " + err.message);
         } finally {
-            btnProcess.disabled = false;
-            btnProcess.innerHTML = `<i class="fa-solid fa-play"></i> Run LangGraph Pipeline`;
+            if (isLiveUnlocked) {
+                btnProcess.disabled = false;
+                btnProcess.innerHTML = `<i class="fa-solid fa-play"></i> Run LangGraph Pipeline`;
+            } else {
+                setLiveLockState(false);
+            }
         }
     });
 
@@ -539,12 +692,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".chip-btn").forEach(chip => {
         chip.addEventListener("click", () => {
+            if (!isLiveUnlocked) {
+                if (unlockModal) unlockModal.style.display = "flex";
+                return;
+            }
             chatInput.value = chip.getAttribute("data-q");
             sendChatMessage();
         });
     });
 
     async function sendChatMessage() {
+        if (!isLiveUnlocked) {
+            if (unlockModal) unlockModal.style.display = "flex";
+            return;
+        }
+
         const text = chatInput.value.trim();
         if (!text) return;
 
@@ -682,7 +844,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Bind Load
                 tr.querySelector(".btn-load-run").addEventListener("click", async () => {
                     historyModal.style.display = "none";
-                    await loadPastRun(run.thread_id);
+                    await loadPastRun(run.thread_id, true);
                 });
 
                 // Bind Delete
@@ -713,7 +875,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    async function loadPastRun(threadId) {
+    async function loadPastRun(threadId, showAlert = false) {
         try {
             const resp = await fetch(`/api/history/${threadId}`);
             if (!resp.ok) throw new Error("Failed to fetch historical run details");
@@ -722,6 +884,23 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!run) throw new Error("No run log returned");
 
             currentThreadId = run.thread_id;
+            selectedSampleName = run.image_name || "sample1.jpg";
+            selectedFile = null;
+
+            // Highlight corresponding sample chip if present
+            document.querySelectorAll(".sample-chip").forEach(c => {
+                c.classList.toggle("active", c.textContent === run.image_name || c.textContent === "sample1.jpg");
+            });
+
+            // Update dropzone display
+            const dropName = dropzone.querySelector('.drop-text strong');
+            const dropSub = dropzone.querySelector('.drop-text span');
+            if (dropName) dropName.textContent = run.image_name || "sample1.jpg";
+            if (dropSub) {
+                dropSub.textContent = isLiveUnlocked
+                    ? "Sample selected — Click Run LangGraph Pipeline"
+                    : `Historical run ${run.thread_id} loaded (Safe Demo Mode)`;
+            }
             
             // The saved ner_data column contains the ENTIRE state object!
             const state = run.ner_data || {};
@@ -731,7 +910,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Set current image view using securely proxied local path
             currentImageDataUrl = `/api/image/view?path=${encodeURIComponent(run.image_path)}`;
-            canvasPlaceholder.style.display = "none";
+            if (canvasPlaceholder) canvasPlaceholder.style.display = "none";
             
             // Render the graph state to Canvas overlay, NER details, and step-by-step JSON
             renderGraphState(state);
@@ -749,9 +928,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            alert(`Historical run ${threadId} loaded successfully onto workspace.`);
+            if (showAlert) {
+                alert(`Historical run ${threadId} loaded successfully onto workspace.`);
+            }
         } catch (err) {
-            alert("Error loading historical run: " + err.message);
+            console.error("Error loading historical run:", err);
+            if (showAlert) {
+                alert("Error loading historical run: " + err.message);
+            }
         }
     }
+
+    // Initialize Safe Demo Mode (locked by default)
+    setLiveLockState(false);
+
+    // Auto-load default historical run fe6126fa on homepage load
+    loadPastRun("fe6126fa", false);
 });

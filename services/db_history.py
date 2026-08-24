@@ -115,6 +115,44 @@ class DatabaseHistoryManager:
             except Exception as simple_err:
                 print(f"[Database History Migration Warning]: {simple_err}", flush=True)
 
+        # Ensure default historical run (fe6126fa) is seeded
+        self._seed_default_run()
+
+    def _seed_default_run(self):
+        try:
+            db = self.SessionLocal()
+            try:
+                run = db.query(DigitizationRun).filter(DigitizationRun.thread_id == "fe6126fa").first()
+                if not run:
+                    seed_path = Path(__file__).resolve().parent / "seed_data.json"
+                    if seed_path.exists():
+                        with open(seed_path, "r", encoding="utf-8") as f:
+                            seed = json.load(f)
+                        created_dt = None
+                        if seed.get("created_at"):
+                            try:
+                                created_dt = datetime.fromisoformat(seed["created_at"])
+                            except Exception:
+                                created_dt = datetime.utcnow()
+                        run = DigitizationRun(
+                            thread_id=seed.get("thread_id", "fe6126fa"),
+                            image_name=seed.get("image_name", "sample1.jpg"),
+                            image_path=seed.get("image_path", ""),
+                            merged_ocr_text=seed.get("merged_ocr_text", ""),
+                            ner_data=seed.get("ner_data", {}),
+                            validation_warnings=seed.get("validation_warnings", []),
+                            chat_history=seed.get("chat_history", []),
+                            status=seed.get("status", "approved"),
+                            created_at=created_dt or datetime.utcnow()
+                        )
+                        db.add(run)
+                        db.commit()
+                        print("[Database History] Seeded default approved run 'fe6126fa' successfully.", flush=True)
+            finally:
+                db.close()
+        except Exception as seed_err:
+            print(f"[Database History Seed Warning]: {seed_err}", flush=True)
+
     def save_run(
         self,
         thread_id: str,

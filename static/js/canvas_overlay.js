@@ -83,6 +83,50 @@ class PrescriptionCanvas {
             this.isDragging = false;
         });
 
+        // Touch Drag & Pinch-Zoom Support for Mobile/Tablet
+        let initialPinchDist = 0;
+        let initialScale = 1.0;
+
+        this.viewport.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                this.isDragging = true;
+                const touch = e.touches[0];
+                this.startX = touch.clientX - this.panX;
+                this.startY = touch.clientY - this.panY;
+            } else if (e.touches.length === 2) {
+                this.isDragging = false;
+                initialPinchDist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                initialScale = this.scale;
+            }
+        }, { passive: true });
+
+        this.viewport.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1 && this.isDragging) {
+                const touch = e.touches[0];
+                this.panX = touch.clientX - this.startX;
+                this.panY = touch.clientY - this.startY;
+                this.render();
+            } else if (e.touches.length === 2 && initialPinchDist > 0) {
+                const dist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                const pinchFactor = dist / initialPinchDist;
+                this.scale = Math.min(Math.max(0.2, initialScale * pinchFactor), 5.0);
+                this.render();
+            }
+        }, { passive: true });
+
+        this.viewport.addEventListener('touchend', (e) => {
+            if (e.touches.length === 0) {
+                this.isDragging = false;
+                initialPinchDist = 0;
+            }
+        }, { passive: true });
+
         window.addEventListener('resize', () => {
             if (this.isLoaded) this.fitToScreen();
         });
@@ -106,6 +150,10 @@ class PrescriptionCanvas {
             console.error("Canvas Image Load Error:", err, "URL:", dataUrl);
         };
         this.img.src = dataUrl;
+        if (this.img.complete && this.img.naturalWidth > 0) {
+            this.isLoaded = true;
+            this.fitToScreen();
+        }
     }
 
     fitToScreen() {

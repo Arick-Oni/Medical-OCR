@@ -1,0 +1,2763 @@
+{
+  "thread_id": "fe6126fa",
+  "image_name": "sample1.jpg",
+  "image_path": "C:\\Users\\arick.sarkar\\Desktop\\Save The Children Techhub\\OCR\\WebView_2\\samples\\sample1.jpg",
+  "merged_ocr_text": "Name: Armando Ceguia\nAddress: West Rimbo, Makati City\nAge: 29 Sex: M Date: 12-03-90\nRx\n(Trimox)\nAmoxicillin 500mg Cap #21\nSig: 1 cap 3x a day for\nseven days.\nPhysician's Sig: J dela Cruz\nLic. No: 123457\nPTR No: 1234567\nS2 No:",
+  "ner_data": {
+    "image_path": "C:\\Users\\arick.sarkar\\Desktop\\Save The Children Techhub\\OCR\\WebView_2\\samples\\sample1.jpg",
+    "image_w": 592,
+    "image_h": 608,
+    "patches": [
+      {
+        "bbox": [
+          99,
+          18,
+          195,
+          62
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9956,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          18,
+          26,
+          69,
+          22
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 0.9998,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          293,
+          28,
+          163,
+          55
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.999,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          18,
+          56,
+          83,
+          20
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 0.997,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          120,
+          58,
+          69,
+          23
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          479,
+          55,
+          60,
+          65
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9859,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          86,
+          91,
+          34,
+          19
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9975,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          247,
+          99,
+          24,
+          19
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9993,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          411,
+          95,
+          31,
+          34
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9998,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          451,
+          94,
+          38,
+          29
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9878,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          18,
+          102,
+          46,
+          21
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 0.9977,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          79,
+          110,
+          16,
+          12
+        ],
+        "class": "Other",
+        "raw_class": "Other_extended",
+        "confidence": 0.9915,
+        "color": {
+          "hex": "#F1C40F",
+          "rgb": [
+            241,
+            196,
+            15
+          ],
+          "bg": "rgba(241, 196, 15, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          156,
+          101,
+          52,
+          20
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 0.998,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          344,
+          102,
+          53,
+          20
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          29,
+          142,
+          25,
+          39
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 0.9935,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          181,
+          188,
+          113,
+          40
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          104,
+          258,
+          172,
+          43
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9998,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          288,
+          268,
+          85,
+          49
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.977,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          396,
+          258,
+          100,
+          42
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          479,
+          270,
+          20,
+          18
+        ],
+        "class": "Other",
+        "raw_class": "Other_extended",
+        "confidence": 0.9981,
+        "color": {
+          "hex": "#F1C40F",
+          "rgb": [
+            241,
+            196,
+            15
+          ],
+          "bg": "rgba(241, 196, 15, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          37,
+          326,
+          57,
+          67
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9999,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          209,
+          342,
+          35,
+          26
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9997,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          275,
+          339,
+          80,
+          50
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9995,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          379,
+          334,
+          49,
+          52
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          135,
+          350,
+          55,
+          26
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9999,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          188,
+          397,
+          87,
+          20
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          296,
+          382,
+          99,
+          31
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9988,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          396,
+          462,
+          149,
+          38
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 0.9997,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          242,
+          477,
+          148,
+          24
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 0.9972,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          242,
+          504,
+          80,
+          20
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 0.9998,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          365,
+          504,
+          58,
+          25
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          242,
+          531,
+          77,
+          20
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          349,
+          530,
+          22,
+          11
+        ],
+        "class": "Other",
+        "raw_class": "Other_extended",
+        "confidence": 0.7309,
+        "color": {
+          "hex": "#F1C40F",
+          "rgb": [
+            241,
+            196,
+            15
+          ],
+          "bg": "rgba(241, 196, 15, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          371,
+          543,
+          18,
+          10
+        ],
+        "class": "Other",
+        "raw_class": "Other_extended",
+        "confidence": 0.9517,
+        "color": {
+          "hex": "#F1C40F",
+          "rgb": [
+            241,
+            196,
+            15
+          ],
+          "bg": "rgba(241, 196, 15, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          387,
+          528,
+          86,
+          29
+        ],
+        "class": "Handwritten",
+        "raw_class": "Handwritten_extended",
+        "confidence": 1.0,
+        "color": {
+          "hex": "#2ECC71",
+          "rgb": [
+            46,
+            204,
+            113
+          ],
+          "bg": "rgba(46, 204, 113, 0.18)"
+        }
+      },
+      {
+        "bbox": [
+          240,
+          556,
+          65,
+          20
+        ],
+        "class": "Printed",
+        "raw_class": "Printed_extended",
+        "confidence": 0.9994,
+        "color": {
+          "hex": "#3498DB",
+          "rgb": [
+            52,
+            152,
+            219
+          ],
+          "bg": "rgba(52, 152, 219, 0.18)"
+        }
+      }
+    ],
+    "tesseract_res": {
+      "text": "ee rr\nve Mw 0\n(ied\nOpti. Bg Cap zg\n\nbg 1 oap a\n\na 5 Big\na\n\n52 No.",
+      "boxes": [
+        {
+          "text": "rr",
+          "conf": 43,
+          "bbox": [
+            64,
+            14,
+            393,
+            74
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "ve",
+          "conf": 31,
+          "bbox": [
+            15,
+            100,
+            46,
+            22
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "0",
+          "conf": 38,
+          "bbox": [
+            458,
+            93,
+            82,
+            29
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "(ied",
+          "conf": 37,
+          "bbox": [
+            154,
+            169,
+            147,
+            65
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "Opti.",
+          "conf": 37,
+          "bbox": [
+            103,
+            257,
+            173,
+            45
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "Cap",
+          "conf": 30,
+          "bbox": [
+            394,
+            257,
+            106,
+            51
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "zg",
+          "conf": 30,
+          "bbox": [
+            473,
+            253,
+            29,
+            68
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "bg",
+          "conf": 53,
+          "bbox": [
+            32,
+            319,
+            53,
+            86
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "a",
+          "conf": 36,
+          "bbox": [
+            240,
+            478,
+            93,
+            44
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "5",
+          "conf": 43,
+          "bbox": [
+            334,
+            484,
+            7,
+            12
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "Big",
+          "conf": 64,
+          "bbox": [
+            350,
+            478,
+            32,
+            23
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "a",
+          "conf": 37,
+          "bbox": [
+            289,
+            511,
+            26,
+            38
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "52",
+          "conf": 87,
+          "bbox": [
+            240,
+            558,
+            21,
+            16
+          ],
+          "source": "tesseract"
+        },
+        {
+          "text": "No.",
+          "conf": 59,
+          "bbox": [
+            272,
+            554,
+            30,
+            30
+          ],
+          "source": "tesseract"
+        }
+      ],
+      "time_sec": 1.262
+    },
+    "easyocr_res": {
+      "text": "Name\nAddress:\nMAt\nAge-A\nSex\nM\nDate:\n8\nR\nCt\nAuuan\nPhysician'8 8ig\nMd\nLic N.\nPTR No\n82 No\nCu",
+      "boxes": [
+        {
+          "text": "Name",
+          "conf": 69,
+          "bbox": [
+            10,
+            24,
+            68,
+            26
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Address:",
+          "conf": 55,
+          "bbox": [
+            12,
+            52,
+            94,
+            26
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "MAt",
+          "conf": 55,
+          "bbox": [
+            112,
+            45,
+            86,
+            41
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Age-A",
+          "conf": 18,
+          "bbox": [
+            11,
+            89,
+            118,
+            42
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Sex",
+          "conf": 62,
+          "bbox": [
+            160,
+            96,
+            48,
+            26
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "M",
+          "conf": 52,
+          "bbox": [
+            244,
+            94,
+            32,
+            34
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Date:",
+          "conf": 72,
+          "bbox": [
+            334,
+            96,
+            64,
+            28
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "8",
+          "conf": 26,
+          "bbox": [
+            467,
+            45,
+            88,
+            90
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "R",
+          "conf": 29,
+          "bbox": [
+            15,
+            137,
+            50,
+            44
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Ct",
+          "conf": 61,
+          "bbox": [
+            270,
+            344,
+            30,
+            30
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Auuan",
+          "conf": 18,
+          "bbox": [
+            178,
+            378,
+            104,
+            48
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Physician'8 8ig",
+          "conf": 30,
+          "bbox": [
+            236,
+            474,
+            148,
+            30
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Md",
+          "conf": 38,
+          "bbox": [
+            390,
+            448,
+            92,
+            52
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Lic N.",
+          "conf": 94,
+          "bbox": [
+            236,
+            502,
+            78,
+            24
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "PTR No",
+          "conf": 92,
+          "bbox": [
+            236,
+            528,
+            84,
+            26
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "82 No",
+          "conf": 33,
+          "bbox": [
+            236,
+            552,
+            66,
+            28
+          ],
+          "source": "easyocr"
+        },
+        {
+          "text": "Cu",
+          "conf": 59,
+          "bbox": [
+            468,
+            452,
+            87,
+            63
+          ],
+          "source": "easyocr"
+        }
+      ],
+      "time_sec": 2.711
+    },
+    "vlm_res": {
+      "text": "Name: Armando Ceguia\nAddress: West Rimbo, Makati City\nAge: 29 Sex: M Date: 12-03-90\nRx\n(Trimox)\nAmoxicillin 500mg Cap #21\nSig: 1 cap 3x a day for\nseven days.\nPhysician's Sig: J dela Cruz\nLic. No: 123457\nPTR No: 1234567\nS2 No:",
+      "time_sec": 8.983,
+      "model": "qwen2.5vl:7b",
+      "backend": "colab_ngrok"
+    },
+    "merged_ocr_text": "Name: Armando Ceguia\nAddress: West Rimbo, Makati City\nAge: 29 Sex: M Date: 12-03-90\nRx\n(Trimox)\nAmoxicillin 500mg Cap #21\nSig: 1 cap 3x a day for\nseven days.\nPhysician's Sig: J dela Cruz\nLic. No: 123457\nPTR No: 1234567\nS2 No:",
+    "all_boxes": [
+      {
+        "text": "Name:",
+        "bbox": [
+          11,
+          18,
+          40,
+          16
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Armando",
+        "bbox": [
+          88,
+          17,
+          101,
+          20
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Ceguia",
+        "bbox": [
+          288,
+          10,
+          101,
+          24
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Address:",
+        "bbox": [
+          11,
+          55,
+          52,
+          16
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "West",
+        "bbox": [
+          117,
+          51,
+          53,
+          23
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Rimbo,",
+        "bbox": [
+          177,
+          51,
+          126,
+          23
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Makati",
+        "bbox": [
+          310,
+          51,
+          85,
+          23
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "City",
+        "bbox": [
+          464,
+          51,
+          65,
+          23
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Age:",
+        "bbox": [
+          11,
+          96,
+          40,
+          15
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "29",
+        "bbox": [
+          76,
+          88,
+          51,
+          43
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Sex:",
+        "bbox": [
+          189,
+          96,
+          31,
+          15
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "M",
+        "bbox": [
+          247,
+          88,
+          25,
+          43
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Date:",
+        "bbox": [
+          341,
+          96,
+          40,
+          15
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "12-03-90",
+        "bbox": [
+          408,
+          88,
+          136,
+          43
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Rx",
+        "bbox": [
+          20,
+          141,
+          43,
+          40
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "(Trimox)",
+        "bbox": [
+          156,
+          167,
+          147,
+          71
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Amoxicillin",
+        "bbox": [
+          100,
+          256,
+          178,
+          49
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "500mg",
+        "bbox": [
+          282,
+          256,
+          94,
+          49
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Cap#",
+        "bbox": [
+          395,
+          256,
+          50,
+          46
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "21",
+        "bbox": [
+          464,
+          270,
+          38,
+          35
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Sig:",
+        "bbox": [
+          35,
+          327,
+          54,
+          51
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "1",
+        "bbox": [
+          112,
+          340,
+          15,
+          38
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "cap",
+        "bbox": [
+          129,
+          340,
+          60,
+          38
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "3x",
+        "bbox": [
+          210,
+          340,
+          39,
+          38
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "a",
+        "bbox": [
+          276,
+          340,
+          14,
+          38
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "day",
+        "bbox": [
+          292,
+          340,
+          69,
+          38
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "for",
+        "bbox": [
+          387,
+          340,
+          49,
+          38
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "seven",
+        "bbox": [
+          176,
+          378,
+          85,
+          53
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "days.",
+        "bbox": [
+          264,
+          378,
+          136,
+          53
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Physician's",
+        "bbox": [
+          240,
+          479,
+          86,
+          21
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Sig:",
+        "bbox": [
+          330,
+          479,
+          51,
+          21
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "J dela",
+        "bbox": [
+          384,
+          458,
+          67,
+          42
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Cruz",
+        "bbox": [
+          454,
+          458,
+          113,
+          42
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "Lic. No:",
+        "bbox": [
+          240,
+          509,
+          69,
+          15
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "123457",
+        "bbox": [
+          312,
+          509,
+          139,
+          21
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "PTR No:",
+        "bbox": [
+          240,
+          535,
+          69,
+          15
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "1234567",
+        "bbox": [
+          312,
+          535,
+          155,
+          15
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "S2 No:",
+        "bbox": [
+          240,
+          559,
+          69,
+          15
+        ],
+        "source": "qwen_grounding"
+      },
+      {
+        "text": "1234567",
+        "bbox": [
+          312,
+          559,
+          155,
+          15
+        ],
+        "source": "qwen_grounding"
+      }
+    ],
+    "word_detections": [
+      {
+        "word": "Name:",
+        "text": "Name:",
+        "bbox": [
+          11,
+          18,
+          51,
+          34
+        ],
+        "box": [
+          11,
+          18,
+          40,
+          16
+        ],
+        "norm_bbox": [
+          20,
+          31,
+          87,
+          56
+        ]
+      },
+      {
+        "word": "Armando",
+        "text": "Armando",
+        "bbox": [
+          88,
+          17,
+          189,
+          37
+        ],
+        "box": [
+          88,
+          17,
+          101,
+          20
+        ],
+        "norm_bbox": [
+          149,
+          28,
+          320,
+          62
+        ]
+      },
+      {
+        "word": "Ceguia",
+        "text": "Ceguia",
+        "bbox": [
+          288,
+          10,
+          389,
+          34
+        ],
+        "box": [
+          288,
+          10,
+          101,
+          24
+        ],
+        "norm_bbox": [
+          488,
+          18,
+          658,
+          56
+        ]
+      },
+      {
+        "word": "Address:",
+        "text": "Address:",
+        "bbox": [
+          11,
+          55,
+          63,
+          71
+        ],
+        "box": [
+          11,
+          55,
+          52,
+          16
+        ],
+        "norm_bbox": [
+          20,
+          92,
+          107,
+          117
+        ]
+      },
+      {
+        "word": "West",
+        "text": "West",
+        "bbox": [
+          117,
+          51,
+          170,
+          74
+        ],
+        "box": [
+          117,
+          51,
+          53,
+          23
+        ],
+        "norm_bbox": [
+          199,
+          85,
+          288,
+          122
+        ]
+      },
+      {
+        "word": "Rimbo,",
+        "text": "Rimbo,",
+        "bbox": [
+          177,
+          51,
+          303,
+          74
+        ],
+        "box": [
+          177,
+          51,
+          126,
+          23
+        ],
+        "norm_bbox": [
+          300,
+          85,
+          512,
+          122
+        ]
+      },
+      {
+        "word": "Makati",
+        "text": "Makati",
+        "bbox": [
+          310,
+          51,
+          395,
+          74
+        ],
+        "box": [
+          310,
+          51,
+          85,
+          23
+        ],
+        "norm_bbox": [
+          524,
+          85,
+          668,
+          122
+        ]
+      },
+      {
+        "word": "City",
+        "text": "City",
+        "bbox": [
+          464,
+          51,
+          529,
+          74
+        ],
+        "box": [
+          464,
+          51,
+          65,
+          23
+        ],
+        "norm_bbox": [
+          784,
+          85,
+          895,
+          122
+        ]
+      },
+      {
+        "word": "Age:",
+        "text": "Age:",
+        "bbox": [
+          11,
+          96,
+          51,
+          111
+        ],
+        "box": [
+          11,
+          96,
+          40,
+          15
+        ],
+        "norm_bbox": [
+          20,
+          158,
+          87,
+          183
+        ]
+      },
+      {
+        "word": "29",
+        "text": "29",
+        "bbox": [
+          76,
+          88,
+          127,
+          131
+        ],
+        "box": [
+          76,
+          88,
+          51,
+          43
+        ],
+        "norm_bbox": [
+          129,
+          145,
+          215,
+          217
+        ]
+      },
+      {
+        "word": "Sex:",
+        "text": "Sex:",
+        "bbox": [
+          189,
+          96,
+          220,
+          111
+        ],
+        "box": [
+          189,
+          96,
+          31,
+          15
+        ],
+        "norm_bbox": [
+          320,
+          158,
+          372,
+          183
+        ]
+      },
+      {
+        "word": "M",
+        "text": "M",
+        "bbox": [
+          247,
+          88,
+          272,
+          131
+        ],
+        "box": [
+          247,
+          88,
+          25,
+          43
+        ],
+        "norm_bbox": [
+          418,
+          145,
+          461,
+          217
+        ]
+      },
+      {
+        "word": "Date:",
+        "text": "Date:",
+        "bbox": [
+          341,
+          96,
+          381,
+          111
+        ],
+        "box": [
+          341,
+          96,
+          40,
+          15
+        ],
+        "norm_bbox": [
+          577,
+          158,
+          644,
+          183
+        ]
+      },
+      {
+        "word": "12-03-90",
+        "text": "12-03-90",
+        "bbox": [
+          408,
+          88,
+          544,
+          131
+        ],
+        "box": [
+          408,
+          88,
+          136,
+          43
+        ],
+        "norm_bbox": [
+          690,
+          145,
+          920,
+          217
+        ]
+      },
+      {
+        "word": "Rx",
+        "text": "Rx",
+        "bbox": [
+          20,
+          141,
+          63,
+          181
+        ],
+        "box": [
+          20,
+          141,
+          43,
+          40
+        ],
+        "norm_bbox": [
+          35,
+          232,
+          107,
+          298
+        ]
+      },
+      {
+        "word": "(Trimox)",
+        "text": "(Trimox)",
+        "bbox": [
+          156,
+          167,
+          303,
+          238
+        ],
+        "box": [
+          156,
+          167,
+          147,
+          71
+        ],
+        "norm_bbox": [
+          264,
+          275,
+          512,
+          392
+        ]
+      },
+      {
+        "word": "Amoxicillin",
+        "text": "Amoxicillin",
+        "bbox": [
+          100,
+          256,
+          278,
+          305
+        ],
+        "box": [
+          100,
+          256,
+          178,
+          49
+        ],
+        "norm_bbox": [
+          170,
+          422,
+          470,
+          502
+        ]
+      },
+      {
+        "word": "500mg",
+        "text": "500mg",
+        "bbox": [
+          282,
+          256,
+          376,
+          305
+        ],
+        "box": [
+          282,
+          256,
+          94,
+          49
+        ],
+        "norm_bbox": [
+          478,
+          422,
+          636,
+          502
+        ]
+      },
+      {
+        "word": "Cap#",
+        "text": "Cap#",
+        "bbox": [
+          395,
+          256,
+          445,
+          302
+        ],
+        "box": [
+          395,
+          256,
+          50,
+          46
+        ],
+        "norm_bbox": [
+          668,
+          422,
+          752,
+          497
+        ]
+      },
+      {
+        "word": "21",
+        "text": "21",
+        "bbox": [
+          464,
+          270,
+          502,
+          305
+        ],
+        "box": [
+          464,
+          270,
+          38,
+          35
+        ],
+        "norm_bbox": [
+          784,
+          445,
+          848,
+          502
+        ]
+      },
+      {
+        "word": "Sig:",
+        "text": "Sig:",
+        "bbox": [
+          35,
+          327,
+          89,
+          378
+        ],
+        "box": [
+          35,
+          327,
+          54,
+          51
+        ],
+        "norm_bbox": [
+          60,
+          538,
+          152,
+          623
+        ]
+      },
+      {
+        "word": "1",
+        "text": "1",
+        "bbox": [
+          112,
+          340,
+          127,
+          378
+        ],
+        "box": [
+          112,
+          340,
+          15,
+          38
+        ],
+        "norm_bbox": [
+          190,
+          560,
+          215,
+          623
+        ]
+      },
+      {
+        "word": "cap",
+        "text": "cap",
+        "bbox": [
+          129,
+          340,
+          189,
+          378
+        ],
+        "box": [
+          129,
+          340,
+          60,
+          38
+        ],
+        "norm_bbox": [
+          219,
+          560,
+          320,
+          623
+        ]
+      },
+      {
+        "word": "3x",
+        "text": "3x",
+        "bbox": [
+          210,
+          340,
+          249,
+          378
+        ],
+        "box": [
+          210,
+          340,
+          39,
+          38
+        ],
+        "norm_bbox": [
+          355,
+          560,
+          422,
+          623
+        ]
+      },
+      {
+        "word": "a",
+        "text": "a",
+        "bbox": [
+          276,
+          340,
+          290,
+          378
+        ],
+        "box": [
+          276,
+          340,
+          14,
+          38
+        ],
+        "norm_bbox": [
+          467,
+          560,
+          490,
+          623
+        ]
+      },
+      {
+        "word": "day",
+        "text": "day",
+        "bbox": [
+          292,
+          340,
+          361,
+          378
+        ],
+        "box": [
+          292,
+          340,
+          69,
+          38
+        ],
+        "norm_bbox": [
+          494,
+          560,
+          610,
+          623
+        ]
+      },
+      {
+        "word": "for",
+        "text": "for",
+        "bbox": [
+          387,
+          340,
+          436,
+          378
+        ],
+        "box": [
+          387,
+          340,
+          49,
+          38
+        ],
+        "norm_bbox": [
+          655,
+          560,
+          738,
+          623
+        ]
+      },
+      {
+        "word": "seven",
+        "text": "seven",
+        "bbox": [
+          176,
+          378,
+          261,
+          431
+        ],
+        "box": [
+          176,
+          378,
+          85,
+          53
+        ],
+        "norm_bbox": [
+          298,
+          623,
+          442,
+          710
+        ]
+      },
+      {
+        "word": "days.",
+        "text": "days.",
+        "bbox": [
+          264,
+          378,
+          400,
+          431
+        ],
+        "box": [
+          264,
+          378,
+          136,
+          53
+        ],
+        "norm_bbox": [
+          446,
+          623,
+          676,
+          710
+        ]
+      },
+      {
+        "word": "Physician's",
+        "text": "Physician's",
+        "bbox": [
+          240,
+          479,
+          326,
+          500
+        ],
+        "box": [
+          240,
+          479,
+          86,
+          21
+        ],
+        "norm_bbox": [
+          406,
+          788,
+          552,
+          823
+        ]
+      },
+      {
+        "word": "Sig:",
+        "text": "Sig:",
+        "bbox": [
+          330,
+          479,
+          381,
+          500
+        ],
+        "box": [
+          330,
+          479,
+          51,
+          21
+        ],
+        "norm_bbox": [
+          558,
+          788,
+          644,
+          823
+        ]
+      },
+      {
+        "word": "J dela",
+        "text": "J dela",
+        "bbox": [
+          384,
+          458,
+          451,
+          500
+        ],
+        "box": [
+          384,
+          458,
+          67,
+          42
+        ],
+        "norm_bbox": [
+          650,
+          754,
+          762,
+          823
+        ]
+      },
+      {
+        "word": "Cruz",
+        "text": "Cruz",
+        "bbox": [
+          454,
+          458,
+          567,
+          500
+        ],
+        "box": [
+          454,
+          458,
+          113,
+          42
+        ],
+        "norm_bbox": [
+          768,
+          754,
+          958,
+          823
+        ]
+      },
+      {
+        "word": "Lic. No:",
+        "text": "Lic. No:",
+        "bbox": [
+          240,
+          509,
+          309,
+          524
+        ],
+        "box": [
+          240,
+          509,
+          69,
+          15
+        ],
+        "norm_bbox": [
+          406,
+          838,
+          522,
+          863
+        ]
+      },
+      {
+        "word": "123457",
+        "text": "123457",
+        "bbox": [
+          312,
+          509,
+          451,
+          530
+        ],
+        "box": [
+          312,
+          509,
+          139,
+          21
+        ],
+        "norm_bbox": [
+          528,
+          838,
+          762,
+          873
+        ]
+      },
+      {
+        "word": "PTR No:",
+        "text": "PTR No:",
+        "bbox": [
+          240,
+          535,
+          309,
+          550
+        ],
+        "box": [
+          240,
+          535,
+          69,
+          15
+        ],
+        "norm_bbox": [
+          406,
+          880,
+          522,
+          905
+        ]
+      },
+      {
+        "word": "1234567",
+        "text": "1234567",
+        "bbox": [
+          312,
+          535,
+          467,
+          550
+        ],
+        "box": [
+          312,
+          535,
+          155,
+          15
+        ],
+        "norm_bbox": [
+          528,
+          880,
+          790,
+          905
+        ]
+      },
+      {
+        "word": "S2 No:",
+        "text": "S2 No:",
+        "bbox": [
+          240,
+          559,
+          309,
+          574
+        ],
+        "box": [
+          240,
+          559,
+          69,
+          15
+        ],
+        "norm_bbox": [
+          406,
+          920,
+          522,
+          945
+        ]
+      },
+      {
+        "word": "1234567",
+        "text": "1234567",
+        "bbox": [
+          312,
+          559,
+          467,
+          574
+        ],
+        "box": [
+          312,
+          559,
+          155,
+          15
+        ],
+        "norm_bbox": [
+          528,
+          920,
+          790,
+          945
+        ]
+      }
+    ],
+    "fused_ner_boxes": [
+      {
+        "entity_key": "facility_address",
+        "label": "Facility Address: West Rimbo, Makati City",
+        "entity_text": "West Rimbo, Makati City",
+        "bbox": [
+          117,
+          51,
+          529,
+          74
+        ],
+        "box": [
+          117,
+          51,
+          412,
+          23
+        ],
+        "underline": {
+          "x1": 117,
+          "y1": 76,
+          "x2": 529,
+          "y2": 76
+        },
+        "color": "#818cf8",
+        "matched_words": [
+          "West",
+          "Rimbo,",
+          "Makati",
+          "City"
+        ]
+      },
+      {
+        "entity_key": "patient_name",
+        "label": "Patient Name: Armando Ceguia",
+        "entity_text": "Armando Ceguia",
+        "bbox": [
+          88,
+          10,
+          389,
+          37
+        ],
+        "box": [
+          88,
+          10,
+          301,
+          27
+        ],
+        "underline": {
+          "x1": 88,
+          "y1": 39,
+          "x2": 389,
+          "y2": 39
+        },
+        "color": "#8b5cf6",
+        "matched_words": [
+          "Armando",
+          "Ceguia"
+        ]
+      },
+      {
+        "entity_key": "age",
+        "label": "Age: 29",
+        "entity_text": "29",
+        "bbox": [
+          76,
+          88,
+          127,
+          131
+        ],
+        "box": [
+          76,
+          88,
+          51,
+          43
+        ],
+        "underline": {
+          "x1": 76,
+          "y1": 133,
+          "x2": 127,
+          "y2": 133
+        },
+        "color": "#ec4899",
+        "matched_words": [
+          "29"
+        ]
+      },
+      {
+        "entity_key": "gender",
+        "label": "Gender: M",
+        "entity_text": "M",
+        "bbox": [
+          247,
+          88,
+          272,
+          131
+        ],
+        "box": [
+          247,
+          88,
+          25,
+          43
+        ],
+        "underline": {
+          "x1": 247,
+          "y1": 133,
+          "x2": 272,
+          "y2": 133
+        },
+        "color": "#f43f5e",
+        "matched_words": [
+          "M"
+        ]
+      },
+      {
+        "entity_key": "date",
+        "label": "Date: 12-03-90",
+        "entity_text": "12-03-90",
+        "bbox": [
+          408,
+          88,
+          544,
+          131
+        ],
+        "box": [
+          408,
+          88,
+          136,
+          43
+        ],
+        "underline": {
+          "x1": 408,
+          "y1": 133,
+          "x2": 544,
+          "y2": 133
+        },
+        "color": "#f59e0b",
+        "matched_words": [
+          "12-03-90"
+        ]
+      },
+      {
+        "entity_key": "doctor_name",
+        "label": "Doctor Name: J dela Cruz",
+        "entity_text": "J dela Cruz",
+        "bbox": [
+          384,
+          458,
+          567,
+          500
+        ],
+        "box": [
+          384,
+          458,
+          183,
+          42
+        ],
+        "underline": {
+          "x1": 384,
+          "y1": 502,
+          "x2": 567,
+          "y2": 502
+        },
+        "color": "#06b6d4",
+        "matched_words": [
+          "J dela",
+          "Cruz"
+        ]
+      },
+      {
+        "entity_key": "license_no",
+        "label": "License No: 123457",
+        "entity_text": "123457",
+        "bbox": [
+          312,
+          509,
+          451,
+          530
+        ],
+        "box": [
+          312,
+          509,
+          139,
+          21
+        ],
+        "underline": {
+          "x1": 312,
+          "y1": 532,
+          "x2": 451,
+          "y2": 532
+        },
+        "color": "#64748b",
+        "matched_words": [
+          "123457"
+        ]
+      },
+      {
+        "entity_key": "ptr_no",
+        "label": "Ptr No: 1234567",
+        "entity_text": "1234567",
+        "bbox": [
+          312,
+          535,
+          467,
+          550
+        ],
+        "box": [
+          312,
+          535,
+          155,
+          15
+        ],
+        "underline": {
+          "x1": 312,
+          "y1": 552,
+          "x2": 467,
+          "y2": 552
+        },
+        "color": "#475569",
+        "matched_words": [
+          "1234567"
+        ]
+      },
+      {
+        "entity_key": "medication_drug_name",
+        "label": "Rx Drug Name: Amoxicillin",
+        "entity_text": "Amoxicillin",
+        "bbox": [
+          100,
+          256,
+          278,
+          305
+        ],
+        "box": [
+          100,
+          256,
+          178,
+          49
+        ],
+        "underline": {
+          "x1": 100,
+          "y1": 307,
+          "x2": 278,
+          "y2": 307
+        },
+        "color": "#10b981",
+        "matched_words": [
+          "Amoxicillin"
+        ]
+      },
+      {
+        "entity_key": "medication_dosage",
+        "label": "Rx Dosage: 500mg",
+        "entity_text": "500mg",
+        "bbox": [
+          282,
+          256,
+          376,
+          305
+        ],
+        "box": [
+          282,
+          256,
+          94,
+          49
+        ],
+        "underline": {
+          "x1": 282,
+          "y1": 307,
+          "x2": 376,
+          "y2": 307
+        },
+        "color": "#059669",
+        "matched_words": [
+          "500mg"
+        ]
+      },
+      {
+        "entity_key": "medication_quantity",
+        "label": "Rx Quantity: 21",
+        "entity_text": "21",
+        "bbox": [
+          464,
+          270,
+          502,
+          305
+        ],
+        "box": [
+          464,
+          270,
+          38,
+          35
+        ],
+        "underline": {
+          "x1": 464,
+          "y1": 307,
+          "x2": 502,
+          "y2": 307
+        },
+        "color": "#34d399",
+        "matched_words": [
+          "21"
+        ]
+      },
+      {
+        "entity_key": "medication_frequency",
+        "label": "Rx Frequency: 3x a day for seven days",
+        "entity_text": "3x a day for seven days",
+        "bbox": [
+          176,
+          340,
+          436,
+          431
+        ],
+        "box": [
+          176,
+          340,
+          260,
+          91
+        ],
+        "underline": {
+          "x1": 176,
+          "y1": 433,
+          "x2": 436,
+          "y2": 433
+        },
+        "color": "#84cc16",
+        "matched_words": [
+          "3x",
+          "a",
+          "day",
+          "for",
+          "seven",
+          "days.",
+          "days."
+        ]
+      },
+      {
+        "entity_key": "medication_route",
+        "label": "Rx Route: Cap",
+        "entity_text": "Cap",
+        "bbox": [
+          129,
+          256,
+          445,
+          378
+        ],
+        "box": [
+          129,
+          256,
+          316,
+          122
+        ],
+        "underline": {
+          "x1": 129,
+          "y1": 380,
+          "x2": 445,
+          "y2": 380
+        },
+        "color": "#06b6d4",
+        "matched_words": [
+          "Cap#",
+          "cap"
+        ]
+      }
+    ],
+    "ner_data": {
+      "facility_name": "",
+      "facility_address": "West Rimbo, Makati City",
+      "facility_phone": "",
+      "patient_name": "Armando Ceguia",
+      "age": "29",
+      "gender": "M",
+      "date": "12-03-90",
+      "doctor_name": "J dela Cruz",
+      "doctor_specialty": "",
+      "license_no": "123457",
+      "ptr_no": "1234567",
+      "s2_no": "",
+      "diagnosis_indication": "",
+      "medications": [
+        {
+          "drug_name": "Amoxicillin",
+          "dosage": "500mg",
+          "quantity": "21",
+          "frequency": "3x a day for seven days",
+          "route": "Cap",
+          "duration": ""
+        }
+      ]
+    },
+    "validation_warnings": [],
+    "uncertain_items": [],
+    "loop_count": 0,
+    "doctor_approved": true,
+    "doctor_edits": {
+      "doctor_name": "J dela Cruz",
+      "license_no": "123457",
+      "facility_name": "",
+      "date": "12-03-90",
+      "patient_name": "Armando Ceguia"
+    },
+    "pdf_path": "C:\\Users\\arick.sarkar\\Desktop\\Save The Children Techhub\\OCR\\WebView_2\\samples\\generated_pdfs\\digitized_sample1.pdf",
+    "current_step": "completed",
+    "status_msg": "Prescription digitization pipeline successfully completed."
+  },
+  "validation_warnings": [],
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "what is the patients details"
+    },
+    {
+      "role": "assistant",
+      "content": "The patient's details are as follows:\n\n- **Name:** Armando Ceguia\n- **Age:** 29\n- **Gender:** Male\n- **Date of Birth:** 12-03-90\n- **Doctor's Name:** J dela Cruz\n- **Doctor's License No.:** 123457\n- **Prescription Registration No.:** 1234567\n- **Diagnosis/Indication:** Not specified in the provided data\n- **Medication:** Amoxicillin\n  - **Dosage:** 500mg\n  - **Quantity:** 21\n  - **Frequency:** 3 times a day for seven days\n  - **Route:** Oral (Cap)\n  - **Duration:** Not specified\n\n### Medication Schedule\n| Time of Day | Dosage | Duration |\n|-------------|--------|----------|\n| Morning     | 500mg  | 3x a day |\n| Afternoon   | 500mg  | 3x a day |\n| Evening     | 500mg  | 3x a day |\n\n--- \n\n**Disclaimer:** This AI assessment is for clinical decision support only and does not replace professional medical judgment."
+    }
+  ],
+  "status": "approved",
+  "created_at": "2026-08-17T05:21:56.812059",
+  "updated_at": "2026-08-17T05:36:56.420462"
+}
