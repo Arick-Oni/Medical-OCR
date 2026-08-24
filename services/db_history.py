@@ -122,18 +122,19 @@ class DatabaseHistoryManager:
         try:
             db = self.SessionLocal()
             try:
-                run = db.query(DigitizationRun).filter(DigitizationRun.thread_id == "fe6126fa").first()
-                if not run:
-                    seed_path = Path(__file__).resolve().parent / "seed_data.json"
-                    if seed_path.exists():
-                        with open(seed_path, "r", encoding="utf-8") as f:
-                            seed = json.load(f)
-                        created_dt = None
-                        if seed.get("created_at"):
-                            try:
-                                created_dt = datetime.fromisoformat(seed["created_at"])
-                            except Exception:
-                                created_dt = datetime.utcnow()
+                seed_path = Path(__file__).resolve().parent / "seed_data.json"
+                if seed_path.exists():
+                    with open(seed_path, "r", encoding="utf-8") as f:
+                        seed = json.load(f)
+                    created_dt = None
+                    if seed.get("created_at"):
+                        try:
+                            created_dt = datetime.fromisoformat(seed["created_at"])
+                        except Exception:
+                            created_dt = datetime.utcnow()
+
+                    run = db.query(DigitizationRun).filter(DigitizationRun.thread_id == "fe6126fa").first()
+                    if not run:
                         run = DigitizationRun(
                             thread_id=seed.get("thread_id", "fe6126fa"),
                             image_name=seed.get("image_name", "sample1.jpg"),
@@ -146,8 +147,15 @@ class DatabaseHistoryManager:
                             created_at=created_dt or datetime.utcnow()
                         )
                         db.add(run)
-                        db.commit()
                         print("[Database History] Seeded default approved run 'fe6126fa' successfully.", flush=True)
+                    else:
+                        # Ensure seed data has full patches, boxes, and approved status
+                        if not run.ner_data or not run.ner_data.get("patches"):
+                            run.ner_data = seed.get("ner_data", {})
+                            run.merged_ocr_text = seed.get("merged_ocr_text", "")
+                            run.status = "approved"
+                            print("[Database History] Updated existing run 'fe6126fa' with complete seed state.", flush=True)
+                    db.commit()
             finally:
                 db.close()
         except Exception as seed_err:
